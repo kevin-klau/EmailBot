@@ -65,6 +65,16 @@ async function patchCSV (num, newText) {
 	}
 };
 
+async function sendEmail(num) {
+	try {
+		const response = await fetch(baseURL + "email/" + num, {
+			method: "GET",
+		});
+	} catch (error) {
+		console.error("Fetch error:", error);
+		throw error;
+	}
+};
 
 
-export { postCSV, getCSV, patchCSV };
+export { postCSV, getCSV, patchCSV, sendEmail };
