@@ -149,6 +149,25 @@ function App() {
 };
 
   
+  const [file, setFile] = useState(null);
+
+  const handleUpload = async () => {
+    try {
+      const response = await postCSV(file);
+      console.log(response);
+    } catch (error) {
+      console.log("Server Error");
+    }
+  };
+
+  const handleRetrieval = async () => {
+    try {
+      const response = await getCSV(0);
+      console.log(response);
+    } catch (error) {
+      console.log("Server Error");
+    }
+  }
 
   return (
     <div>
@@ -181,4 +200,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
