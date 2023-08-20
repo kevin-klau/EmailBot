@@ -8,11 +8,44 @@ h2{
  
 }
 
+#emailInput{
+  background-color:#F0F0F0;
+}
+
+#emailInput:focus{
+  outline:none;
+  background-color: #dfdfdf;
+  border-color: none;
+}
+
+#bodyInput{
+  background-color:#F0F0F0;
+}
+
+#bodyInput:focus{
+  outline:none;
+  background-color: #dfdfdf;
+  border-color: none;
+}
+
+#bodyInput::-webkit-scrollbar {
+  width: 10px;
+}
+
+#bodyInput::-webkit-scrollbar-thumb {
+  background-color: #a5a5a5;
+  border-radius: 10px;
+}
+
 #formFile{
   border: 10px solid green;
 }
 
 #king:hover {
+  cursor: pointer; /* New border style on hover */
+}
+
+#kev:hover {
   cursor: pointer; /* New border style on hover */
 }
 
