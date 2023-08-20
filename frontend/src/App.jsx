@@ -228,6 +228,7 @@ function App() {
   const [userPass, setUserPass] = useState("Enter Password Here")
 
   const [prompt, setPrompt] = useState("")
+  let x = 1;
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -240,6 +241,7 @@ function App() {
       console.log(response);
       console.log(data);
 
+      x=response.numsDisplay;
       // SETTING BODY TEXT HERE
       setSendEmail(data.email);
       setSubject(data.subject);
