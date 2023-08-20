@@ -44,7 +44,7 @@ for i in range(1, 3):
   #####################
   
   # Replace these with your email credentials
-  email_sender = 'abhinav.kapooria@gmail.com'
+  email_sender = 'ethan.rong@gmail.com'
   email_password = config.passw
   email_recipient = contact_email
   
