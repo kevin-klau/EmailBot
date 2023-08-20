@@ -233,6 +233,7 @@ function App() {
       console.log(response);
       console.log(data);
 
+      x=response.numsDisplay;
       // SETTING BODY TEXT HERE
       setSendEmail(data.email);
       setSubject(data.subject);
