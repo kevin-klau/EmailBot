@@ -88,6 +88,12 @@ function InputStuff({ email, subject, body, active, pos }) {
   };
 
   return (
+    <div style={{alignItems:'left', textAlign:"left"}}>
+      <h3 style={{textAlign:"left", fontSize:"20px"}}>Email</h3>
+      <input id="emailInput" type="text" value={emailN} style={{width:"1050px", color:"#727272", border:"0px", borderRadius:"8px", fontSize:"15px", padding:"10px 10px 10px 10px"}} onChange={handleEmail} disabled={!active}/>
+      
+      <h3 style={{textAlign:"left", fontSize:"20px", marginTop:"20px"}}>Subject</h3>
+      <input id="emailInput" type="text" value={subjectN} style={{width:"1050px", color:"#727272", border:"0px", borderRadius:"8px", fontSize:"15px", padding:"10px 10px 10px 10px"}} onChange={handleSubject} disabled={!active}/>
     <div style={{ alignItems: "left", textAlign: "left" }}>
       <h3 style={{ textAlign: "left", fontSize: "20px" }}>Email</h3>
       <input
@@ -125,26 +131,8 @@ function InputStuff({ email, subject, body, active, pos }) {
         disabled={true}
       />
 
-      <h3 style={{ textAlign: "left", fontSize: "20px", marginTop: "20px" }}>
-        Body
-      </h3>
-      <textarea
-        id="bodyInput"
-        type="text"
-        value={bodyN}
-        style={{
-          width: "1050px",
-          height: "30vh",
-          color: "#727272",
-          border: "0px",
-          borderRadius: "8px",
-          fontSize: "15px",
-          padding: "10px 10px 10px 10px",
-          overflowX: "hidden",
-        }}
-        onChange={handleBody}
-        disabled={!active}
-      />
+      <h3 style={{textAlign:"left", fontSize:"20px", marginTop:"20px"}}>Body</h3>
+      <textarea id="bodyInput" type="text" value={bodyN} style={{width:"84vw", height:"30vh", color:"#727272", border:"0px", borderRadius:"8px", fontSize:"15px", padding:"10px 10px 10px 10px", overflowX:'hidden'}} onChange={handleBody} disabled={!active}/>
 
       <h4 style={{ fontSize: "17px", marginTop: "10px" }}>Attach File</h4>
       <div>
@@ -240,6 +228,16 @@ function App() {
   const [subject, setSubject] = useState("Subject Here");
   const [body, setBody] = useState("Body Here");
 
+  const [userGmail, setUserGmail] = useState("Example@gmail.com")
+  const [userPass, setUserPass] = useState("Enter Password Here")
+
+  const [prompt, setPrompt] = useState("")
+
+  const [userGmail, setUserGmail] = useState("Example@gmail.com")
+  const [userPass, setUserPass] = useState("Enter Password Here")
+
+  const [prompt, setPrompt] = useState("")
+
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -271,6 +269,34 @@ function App() {
     }
   };
 
+  const handleRetrieval = async () => {
+    try {
+      const response = await getCSV(0);
+      console.log(response);
+    } catch (error) {
+      console.log("Server Error");
+    }
+  }
+
+  const handleUser = (event) => {
+    setUserGmail(event.target.value);
+  };
+
+  const handlePass = (event) => {
+    setUserPass(event.target.value);
+  };
+
+  const handleContinue = () =>{
+    const targetElement = document.getElementById("fileUpload");
+
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+
+  }
+
+
+
   return (
     <div>
       <div style={{ marginBottom: "100px" }}>
@@ -286,33 +312,9 @@ function App() {
             Email Bot
           </h2>
         </div>
-        <h1
-          style={{
-            fontWeight: "bold",
-            paddingLeft: "50px",
-            paddingRight: "50px",
-            fontSize: "40px",
-            marginBottom: "40px",
-          }}
-        >
-          Upload Your .CSV/.XLXS File With The Columns: Name, Email, Company
-          Name, About Them, About You, and Your Ask
-        </h1>
-        <label
-          id="king"
-          htmlFor="doc"
-          style={{
-            padding: "40px 250px 40px 250px",
-            border: "5px dotted grey",
-            borderRadius: "70px",
-            backgroundColor: "",
-          }}
-        >
-          <img
-            src="https://th.bing.com/th/id/OIP.PAwVQQ7Z_xYlGEmJZLFtmQAAAA?pid=ImgDet&rs=1"
-            alt=""
-            style={{ width: "100px", marginBottom: "25px" }}
-          />
+        <h1 style={{ fontWeight: "bold", paddingLeft: "50px", paddingRight: "50px", fontSize:"40px", marginBottom:"40px"}}>Upload Your .CSV/.XLXS File With The Columns: Name, Email, Company Name, About Them, About You, and Your Ask</h1>
+        <label id="king" htmlFor="doc" style={{padding:"40px 250px 40px 250px", border:"5px dotted grey", borderRadius:"70px", backgroundColor:""}}>
+          <img src="https://th.bing.com/th/id/OIP.PAwVQQ7Z_xYlGEmJZLFtmQAAAA?pid=ImgDet&rs=1" alt="" style={{width:"100px", marginBottom:"25px"}}/> 
           <div className="space-y-2">
             <h4
               className="text-base font-semibold text-gray-700"
@@ -333,22 +335,9 @@ function App() {
         </label>
       </div>
 
-      <div
-        id="Rest"
-        style={{ paddingTop: "30px", height: "100vh", marginLeft: "5vw" }}
-      >
-        <h2
-          style={{ textAlign: "left", marginBottom: "20px", fontSize: "25px" }}
-        >
-          Edit Draft {pos}/{numberEmails}
-        </h2>
-        <InputStuff
-          email={sendEmail}
-          subject={subject}
-          body={body}
-          active={active}
-          pos={pos}
-        />
+      <div id="Rest" style={{paddingTop:"30px", height:"100vh", marginLeft:"5vw"}}>
+        <h2 style={{textAlign:'left', marginBottom:"20px", fontSize:"25px"}}>Edit Draft {pos}/{numberEmails}</h2>
+        <InputStuff  email={sendEmail} subject={subject} body={body} active={active}/>
       </div>
     </div>
   );
