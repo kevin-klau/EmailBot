@@ -1,2 +1,2 @@
 # EmailBot
-HackTheSixx
+HackTheSix
