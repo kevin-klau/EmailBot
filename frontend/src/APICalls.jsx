@@ -44,12 +44,15 @@ async function getCSV (num) {
 };
 
 async function patchCSV (num, newText) {
-	let formData = new FormData();
-	formData.append("body", newText);
-
 	try {
 		const response = await fetch(baseURL + "file/" + num, {
-			method: "PATCH",
+			method: "PUT",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				body: newText
+			})
 		});
 
 		if (!response.ok) {
@@ -76,5 +79,26 @@ async function sendEmail(num) {
 	}
 };
 
+async function logIn(user, pass, prompt){
+    const payload = {
+        "user": user,
+        "passw": pass,
+        "prompt": prompt
+    };
 
-export { postCSV, getCSV, patchCSV, sendEmail };
+    try{
+        const response = await fetch(baseURL + "email/0", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+    } catch (error) {
+        console.error("Fetch error:", error);
+        throw error;
+    }
+}
+
+
+export { postCSV, getCSV, patchCSV, sendEmail, logIn};
