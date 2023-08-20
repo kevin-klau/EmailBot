@@ -9,6 +9,27 @@ body {
   
 }
 
+.blueButton{
+  background-color:#102DE9;
+  border:solid 1px #102DE9;
+  padding-left: 19.2px;
+  padding-right: 19.2px;
+  color:white;
+}
+
+.blueButton:hover{
+  background-color:#0c1b80;
+  border:solid 1px #0c1b80;
+  padding-left: 19.2px;
+  padding-right: 19.2px;
+  color:white;
+}
+
+#e{
+  font-family: "Inter", sans-serif;
+  color:white;
+}
+
 .userpass{
   width:700px;
   height: 40px;

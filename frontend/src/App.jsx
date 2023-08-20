@@ -89,11 +89,6 @@ function InputStuff({ email, subject, body, active, pos }) {
 
   return (
     <div style={{alignItems:'left', textAlign:"left"}}>
-      <h3 style={{textAlign:"left", fontSize:"20px"}}>Email</h3>
-      <input id="emailInput" type="text" value={emailN} style={{width:"1050px", color:"#727272", border:"0px", borderRadius:"8px", fontSize:"15px", padding:"10px 10px 10px 10px"}} onChange={handleEmail} disabled={!active}/>
-      
-      <h3 style={{textAlign:"left", fontSize:"20px", marginTop:"20px"}}>Subject</h3>
-      <input id="emailInput" type="text" value={subjectN} style={{width:"1050px", color:"#727272", border:"0px", borderRadius:"8px", fontSize:"15px", padding:"10px 10px 10px 10px"}} onChange={handleSubject} disabled={!active}/>
     <div style={{ alignItems: "left", textAlign: "left" }}>
       <h3 style={{ textAlign: "left", fontSize: "20px" }}>Email</h3>
       <input
@@ -201,9 +196,10 @@ function InputStuff({ email, subject, body, active, pos }) {
             Cancel
           </button>
           <button
+          id="e"
+          className="blueButton btn"
             style={{
               marginLeft: "10px",
-              backgroundColor: "#102DE9",
               paddingTop: "5px",
               paddingBottom: "5px",
             }}
@@ -323,7 +319,7 @@ function App() {
         <textarea id="bodyInput" type="text" style={{width:"1100px", height:"300px", color:"#727272", border:"0px", borderRadius:"8px", fontSize:"16px", padding:"10px 20px 10px 20px", overflowX:'hidden'}} onChange={(event) => setPrompt(event.target.value)} placeholder="For Example: Write an email to {contact_name} (only include their first name) who works at {LP_name}. {LP_name} could be dscribed as: {description}. The purpose of the email is to explain to {contact_name} about the opportunity to invest in The Residency. Copy this exactly 'The Residency aims to globally scale our approach to higher education. We keep the social experience of college by providing housing on college campuses, and we revamp the educational experience by utilizing AI, peer instruction, and project-based learning. Instead of tuition, we financially invest in our students. Instead of degrees, we use portfolios.\n Sam Altman, CEO of OpenAI, advises us as we leverage AI for our first program in Berkeley, CA, which targets founders and has drawn over 200 founders from Harvard, Stanford, and other prestigious institutions.\n Would love to find a time to chat.' Sign the email signaturer with Nick Linck, include a link to Nick's linkedin, https://www.linkedin.com/in/nick-linck-417b0ba9/ and his Twitter https://twitter.com/nick_linck. Do not include a subject line. When you first mention The Residency, make it link to 'https://www.livetheresidency.com/', only write this link once. Write one sentence based on {description} about why this is a good fit. be concise. everything else should be the same as the quoted text. do not italicize anything. do not include any other links than the ones mentioned, this means, only include in the final message, URLs that are listed in this prompt"/>
         
         </div>
-        <button style={{marginLeft:"10px", backgroundColor:"#102DE9", paddingTop:"5px", paddingBottom:"5px", marginBottom:"100px"}} onClick={handleContinue}>Continue</button>
+        <button id="e" className="blueButton btn" style={{marginLeft:"10px", paddingTop:"5px", paddingBottom:"5px", marginBottom:"100px"}} onClick={handleContinue}>Continue</button>
 
 
         <h1 id="fileUpload" style={{ fontWeight: "bold", paddingLeft: "50px", paddingRight: "50px", fontSize:"40px", marginBottom:"40px", paddingTop:"75px"}}>Upload Your .CSV/.XLXS File With The Columns: Name, Email, Company Name, About Them, About You, and Your Ask</h1>
@@ -341,8 +337,8 @@ function App() {
       <div id="Rest" style={{paddingTop:"30px", marginLeft:"80px"}}>
          <div style={{display:"flex"}}>
           <h2 style={{textAlign:'left', marginBottom:"20px", fontSize:"25px"}}>Edit Draft {pos}/{numberEmails}</h2>
-          <button style={{marginLeft:"750px", backgroundColor:"#102DE9", paddingTop:"5px", paddingBottom:"5px"}} onClick={handleLeft}>←</button>
-          <button style={{marginLeft:"20px", backgroundColor:"#102DE9", paddingTop:"5px", paddingBottom:"5px"}} onClick={handleRight}>→</button>
+          <button id="e" className="blueButton btn" style={{marginLeft:"750px", paddingTop:"5px", paddingBottom:"5px"}} onClick={handleLeft}>←</button>
+          <button id="e" className="blueButton btn" style={{marginLeft:"20px", paddingTop:"5px", paddingBottom:"5px"}} onClick={handleRight}>→</button>
         </div> 
         <InputStuff key={pos} email={sendEmail} subject={subject} body={body} active={active}/>
       </div>
