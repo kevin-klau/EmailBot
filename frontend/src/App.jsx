@@ -215,6 +215,8 @@ function InputStuff({ email, subject, body, active, pos }) {
         </div>
       </div>
     </div>
+    </div>
+
   );
 }
 
@@ -227,11 +229,6 @@ function App() {
   const [sendEmail, setSendEmail] = useState("Email Here");
   const [subject, setSubject] = useState("Subject Here");
   const [body, setBody] = useState("Body Here");
-
-  const [userGmail, setUserGmail] = useState("Example@gmail.com")
-  const [userPass, setUserPass] = useState("Enter Password Here")
-
-  const [prompt, setPrompt] = useState("")
 
   const [userGmail, setUserGmail] = useState("Example@gmail.com")
   const [userPass, setUserPass] = useState("Enter Password Here")
@@ -299,48 +296,53 @@ function App() {
 
   return (
     <div>
-      <div style={{ marginBottom: "100px" }}>
-        <div style={{ textAlign: "left", display: "flex" }}>
-          <img
-            src={icon}
-            alt=""
-            style={{ width: "55px", marginBottom: "40px" }}
-          />
-          <h2
-            style={{ paddingLeft: "15px", marginTop: "10px", fontSize: "30px" }}
-          >
-            Email Bot
-          </h2>
+      <div style={{marginBottom:"100px"}}>
+        <div style={{textAlign:"left", display: "flex"}}>
+          <img src={icon} alt="" style={{width:"55px", marginBottom:"40px"}}/> 
+          <h2 style={{paddingLeft:"15px", marginTop:'10px', fontSize:"30px"}}>Email Bot</h2>
         </div>
-        <h1 style={{ fontWeight: "bold", paddingLeft: "50px", paddingRight: "50px", fontSize:"40px", marginBottom:"40px"}}>Upload Your .CSV/.XLXS File With The Columns: Name, Email, Company Name, About Them, About You, and Your Ask</h1>
+
+        <div style={{marginTop:"-15px",marginBottom:"10px"}}>
+        <div style={{marginLeft:"50px",display:'flex',marginBottom:"10px", justifyContent:'left'}}>
+          <h4 style={{fontSize:"35px"}}>Email:</h4>
+          <input type="text" id="emailInput" className="userpass" onChange={handleUser} placeholder={userGmail} style={{marginLeft:"105px"}}/>
+
+        </div>
+
+        <div style={{marginLeft:"50px",display:'flex',marginBottom:"30px", justifyContent:'left',marginTop:"10px"}}>
+          <h4 style={{fontSize:"35px"}}>Password:</h4>
+            <input type="password" id="emailInput" className="userpass" onChange={handlePass} placeHolder="Insert Password Here"/>
+        </div>
+
+        <h3>How Would You Like Your Emails Formatted?</h3>
+        <textarea id="bodyInput" type="text" style={{width:"1100px", height:"300px", color:"#727272", border:"0px", borderRadius:"8px", fontSize:"16px", padding:"10px 20px 10px 20px", overflowX:'hidden'}} onChange={(event) => setPrompt(event.target.value)} placeholder="For Example: Write an email to {contact_name} (only include their first name) who works at {LP_name}. {LP_name} could be dscribed as: {description}. The purpose of the email is to explain to {contact_name} about the opportunity to invest in The Residency. Copy this exactly 'The Residency aims to globally scale our approach to higher education. We keep the social experience of college by providing housing on college campuses, and we revamp the educational experience by utilizing AI, peer instruction, and project-based learning. Instead of tuition, we financially invest in our students. Instead of degrees, we use portfolios.\n Sam Altman, CEO of OpenAI, advises us as we leverage AI for our first program in Berkeley, CA, which targets founders and has drawn over 200 founders from Harvard, Stanford, and other prestigious institutions.\n Would love to find a time to chat.' Sign the email signaturer with Nick Linck, include a link to Nick's linkedin, https://www.linkedin.com/in/nick-linck-417b0ba9/ and his Twitter https://twitter.com/nick_linck. Do not include a subject line. When you first mention The Residency, make it link to 'https://www.livetheresidency.com/', only write this link once. Write one sentence based on {description} about why this is a good fit. be concise. everything else should be the same as the quoted text. do not italicize anything. do not include any other links than the ones mentioned, this means, only include in the final message, URLs that are listed in this prompt"/>
+        
+        </div>
+        <button style={{marginLeft:"10px", backgroundColor:"#102DE9", paddingTop:"5px", paddingBottom:"5px", marginBottom:"100px"}} onClick={handleContinue}>Continue</button>
+
+
+        <h1 id="fileUpload" style={{ fontWeight: "bold", paddingLeft: "50px", paddingRight: "50px", fontSize:"40px", marginBottom:"40px", paddingTop:"75px"}}>Upload Your .CSV/.XLXS File With The Columns: Name, Email, Company Name, About Them, About You, and Your Ask</h1>
         <label id="king" htmlFor="doc" style={{padding:"40px 250px 40px 250px", border:"5px dotted grey", borderRadius:"70px", backgroundColor:""}}>
           <img src="https://th.bing.com/th/id/OIP.PAwVQQ7Z_xYlGEmJZLFtmQAAAA?pid=ImgDet&rs=1" alt="" style={{width:"100px", marginBottom:"25px"}}/> 
           <div className="space-y-2">
-            <h4
-              className="text-base font-semibold text-gray-700"
-              style={{ fontSize: "40px", fontWeight: "bold" }}
-            >
-              Upload Here
-            </h4>
-            <span className="text-sm text-gray-500">.CSV or .XLXS Only</span>
+              <h4 className="text-base font-semibold text-gray-700" style={{fontSize:"40px",fontWeight: "bold"}}>Upload Here</h4>
+              <span className="text-sm text-gray-500">.CSV or .XLXS Only</span>
           </div>
-          <input
-            type="file"
-            id="doc"
-            name="doc"
-            accept="csv xlxs"
-            hidden
-            onChange={handleFileChange}
-          />
+          <input type="file" id="doc" name="doc" accept="csv xlxs" hidden onChange={handleFileChange}/>
+          
         </label>
       </div>
 
-      <div id="Rest" style={{paddingTop:"30px", height:"100vh", marginLeft:"5vw"}}>
+      <div id="Rest" style={{paddingTop:"30px", height:"100vh", marginLeft:"80px"}}>
         <h2 style={{textAlign:'left', marginBottom:"20px", fontSize:"25px"}}>Edit Draft {pos}/{numberEmails}</h2>
         <InputStuff  email={sendEmail} subject={subject} body={body} active={active}/>
       </div>
+
+
+
+      
     </div>
-  );
+  )
 }
 
 export default App;
